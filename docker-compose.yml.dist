@@ -6,7 +6,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - 3307:3306
+      - 3308:3306
     container_name: api_bilemo_db
 
   app:
@@ -18,4 +18,4 @@ services:
     depends_on:
       - database
     ports:
-      - 8081:80
+      - 8082:80
