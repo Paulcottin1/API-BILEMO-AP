@@ -4,4 +4,4 @@ parameters:
   database_port: 3306
   database_name: api-bilemo
   database_user: root
-  database_password: d17d11j15p13
+  database_password: root
