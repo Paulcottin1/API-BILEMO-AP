@@ -7,9 +7,13 @@ use App\Repository\MobileRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
+ *     attributes={
+ *      "normalization_context"={"groups"={"mobile"}}
+ *     },
  *     collectionOperations={"get"},
  *     itemOperations={"get"}
  * )
@@ -21,21 +25,25 @@ class Mobile
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"mobile"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"mobile"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"mobile"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"mobile"})
      */
     private $description;
 

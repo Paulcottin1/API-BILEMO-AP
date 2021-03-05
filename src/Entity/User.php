@@ -7,31 +7,41 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
+ *     attributes={
+ *      "normalization_context"={"groups"={"user"}}
+ *     },
  *     collectionOperations={"post"},
- *     itemOperations={"get"}
+ *     itemOperations={
+ *      "get"={"method"="GET", "security"="object == user"}
+ *     }
  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"user"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user"})
      */
     private $email;
 
@@ -41,7 +51,7 @@ class User
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Client::class, mappedBy="userr")
+     * @ORM\OneToMany(targetEntity=Client::class, mappedBy="user")
      */
     private $clients;
 
@@ -109,7 +119,7 @@ class User
     {
         if (!$this->clients->contains($client)) {
             $this->clients[] = $client;
-            $client->setUserr($this);
+            $client->setUser($this);
         }
 
         return $this;
@@ -119,8 +129,8 @@ class User
     {
         if ($this->clients->removeElement($client)) {
             // set the owning side to null (unless already changed)
-            if ($client->getUserr() === $this) {
-                $client->setUserr(null);
+            if ($client->getUser() === $this) {
+                $client->setUser(null);
             }
         }
 
@@ -149,5 +159,25 @@ class User
         $this->mobiles->removeElement($mobile);
 
         return $this;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }
