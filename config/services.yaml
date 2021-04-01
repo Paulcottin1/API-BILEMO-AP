@@ -38,3 +38,8 @@ services:
         tags:
             - name: 'doctrine.event_listener'
               event: 'prePersist'
+
+    App\Swagger\SwaggerDecorator:
+        decorates: 'api_platform.swagger.normalizer.documentation'
+        arguments: [ '@App\Swagger\SwaggerDecorator.inner' ]
+        autoconfigure: false
