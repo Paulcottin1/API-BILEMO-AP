@@ -45,6 +45,11 @@ Run the project
 symfony server:start
 ```
 
+URL documentation
+```
+http://127.0.0.1:8000/docs
+```
+
 Use admin account to administrate the website
 
 > login: admin@gmail.com
