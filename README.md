@@ -1,5 +1,5 @@
 # API-BILEMO
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3f2cca3fd6bc4d1c9c9c7b02ab256b4c)](https://www.codacy.com/gh/Paulcottin1/API-BILEMO-AP/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Paulcottin1/API-BILEMO-AP&amp;utm_campaign=Badge_Grade)
 ## Installation
 
 Clone the repository Github
