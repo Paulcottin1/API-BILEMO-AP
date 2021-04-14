@@ -50,7 +50,7 @@ URL documentation
 http://127.0.0.1:8000/docs
 ```
 
-Use admin account to administrate the website
+Use admin account to try request after login
 
 > login: admin@gmail.com
 >
