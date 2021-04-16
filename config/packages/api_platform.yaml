@@ -12,3 +12,8 @@ api_platform:
             apiKey:
                 name: Authorization
                 type: header
+    collection:
+        pagination:
+            page_parameter_name: page
+    defaults:
+        pagination_items_per_page: 10
